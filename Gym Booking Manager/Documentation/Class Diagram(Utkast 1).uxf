@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <help_text>Reservation</help_text>
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>686</y>
+      <w>203</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Instructor
+--
+-name: String
+-category: Category
+-calender: readonly Calender
+-quantity: int
+--
++CompareTo(Instructor? other):int
++ToString():string
++CSVify():string
++MakeReservation(Reservation.Category category, IReservingEntity owner, TimeSlot timeslot)
++CancelReservation()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>903</x>
+      <y>896</y>
+      <w>266</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>/User/
+
+--
++id:Guid
+-name : string
+-phone : string
+-email : string
+#perm:int
+--
++CSVify()
++GetPerm()
++Remove(GymDatabaseContext DB, 
+string id)
+_+GetUserByid(GymDatabaseContext DB,_
+_string id, bool DEL = false_
+_+ChooseUserType(string name, string phone, _
+_string email, Guid Id,int choice, GymDatabaseContext DB)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>896</y>
+      <w>350</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>GroupSchedule
+--
+-activities : List&lt;GroupActivity&gt;
+-activity : GroupActivity
+--
++ViewSchedule(user: User)
++AddActivity(activity : GroupActivity)
++UpdateActivity(user: User, activityID : GroupActivity, activity : Groupactivity)
++RemoveActivity(user: User, activityID GroupActivity)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>903</x>
+      <y>749</y>
+      <w>308</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IReservable
+
+--
++MakeReservation(Category category, IReservingEntity owner,
+TimeSlot timeSlot)
++CancelReservation()
++ViewTimeTable()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>763</x>
+      <y>1078</y>
+      <w>203</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;30.0;10.0;30.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>567</x>
+      <y>1204</y>
+      <w>84</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Reserving Entities
+
+/Customer/
+/Group Activity/
+/Staff/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>567</x>
+      <y>987</y>
+      <w>98</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Reservables
+
+/Space/
+/- Hall/
+/- Lane/
+/- Studio/
+/Equipment/
+/P.Trainer/
+/Group Activity Slot ??/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>497</x>
+      <y>1169</y>
+      <w>189</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>Is a slot for a group activity a Reservable?
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>833</x>
+      <y>462</y>
+      <w>196</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Space
+
+--
+-name : String
+-category : Category
+-calendar : readonly Calendar
+
+--
++CompareTo(Space? other): Int
++ToString():string
++CSVify():string
++ViewTimeTable()
++MakeReservation(IReservingEntity owner,  
+Category category, TimeSlot timeslot)
++CancelReservation()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>616</y>
+      <w>21</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1001</x>
+      <y>616</y>
+      <w>21</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>105</x>
+      <y>441</y>
+      <w>203</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>GroupActivity
+
+--
+-activityID
+-participantLimit : int
+-participants : List&lt;Customer&gt;
+-timeSlot: TimeSlot
+-instructor:Instructor
+-space : Space
+-equipment:Equipment
++Participants: List&lt;Customer&gt;
++TimeSlot:TimeSlot
+--
++SignUp(Customer customer)
++SignOut(Customer customer)
++ParticipantsToString()
++ToString()
++CreateActivity(GymDatabaseContext DB)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>637</y>
+      <w>49</w>
+      <h>322</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;440.0;10.0;440.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>273</x>
+      <y>1085</y>
+      <w>217</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Note that activities can have temporal overlap
+in the Group Schedule, as long as there is
+no conflict on part of Staff, Space, and Equipment
+(which all have separate time tables).
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>784</x>
+      <y>336</y>
+      <w>238</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Calendar
+--
+-reservations : List&lt;Reservation&gt;
+--
++GetSlice(): List&lt;Reservation&gt;
++isAvailable(DateTime start, DateTime end):Bool
++AddReservation(Reservation reservation)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>406</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>133</y>
+      <w>140</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Reservation
+--
+-owner : readonly ReservingEntity
+-timeSlot : TimeSlot
+-category:Category
+-quantity:Int
+--
++ToString():string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>861</x>
+      <y>231</y>
+      <w>28</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>462</y>
+      <w>70</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Category
+--
+Hall
+Lane
+Studio</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>476</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1099</x>
+      <y>0</y>
+      <w>525</w>
+      <h>602</h>
+    </coordinates>
+    <panel_attributes>Database
+--
+bg=orange
+transparency=80</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1358</x>
+      <y>35</y>
+      <w>140</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IDatabase
+--
++Create
++Read
++Update
++Delete</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1358</x>
+      <y>147</y>
+      <w>210</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>LocalStorage (DatabaseManager)
+--
++spaces : DbSet&lt;Space&gt;
++ customer : DbSet&lt;Customer&gt;
++staffs : DbSet&lt;Staff&gt;
++admins : DbSet&lt;Admin&gt;
++service : DbSet&lt;Service&gt;
++instructors : DbSet&lt;Insturctor&gt;
++equopments : DbSet&lt;Equipment&gt;
+_sep : char_
+_fpathSpace : string_
+_fpathCustomer : string_
+_fpathStaff : string_
+_fpathAdmin : string_
+_fpathService : string_
+_fpathInstructor : string_
+_fpathEquipment : string_
+--
++Create&lt;T&gt;(T entity)
++Read&lt;T&gt;(field:String?, value:String? ) : List
++Update&lt;T&gt;(T newEntity, T oldEntity) : Bool
++Delete&lt;T&gt;(T entity) : Bool
+-GetDbSetReference(Type type):object</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1113</x>
+      <y>35</y>
+      <w>203</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>GymDatabaseContext
+
+--
+-dbImplementaion : IDatabase
+--
++Create&lt;T&gt;(entity : T) : bool
++Read&lt;T&gt;(field : String?, value : String?) : List&lt;T&gt;
++Update&lt;T&gt;(newEntity : T, oldEntity : T) : bool
++Delete&lt;T&gt;(entity : T) : bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1428</x>
+      <y>105</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1309</x>
+      <y>70</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1148</x>
+      <y>441</y>
+      <w>364</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>DbSet&lt;T&gt;
+--
+-dataFile : Readonly String
+-entities : SortedSet&lt;T&gt;
+--
++Create&lt;T&gt;(T entity)
++Read&lt;T&gt;(field:String?, value:String? ) : List
++Update&lt;T&gt;(T newEntity, T oldEntity) : Bool
++Delete&lt;T&gt;(T entity) : Bool
++pullEntitiesFromFile(string dataFile, String? selector = null, String? value = null)
++pushEntitiesToFile(string dataFile)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1435</x>
+      <y>385</y>
+      <w>28</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1386</x>
+      <y>749</y>
+      <w>84</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+ICSVable
+
+--
++CSVify()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>602</y>
+      <w>378</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>520.0;210.0;520.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1428</x>
+      <y>553</y>
+      <w>35</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>20.0;270.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>756</x>
+      <y>14</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Program</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>49</y>
+      <w>231</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>833</y>
+      <w>105</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IReservingEntity
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>1134</y>
+      <w>182</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Staff
+
+--
+
+--
++CSVify()
++ToString()
++CompareTo()
++RestrictItem()
+_+StaffMenu(GymDatabaseContext DB, _
+_User user)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>903</x>
+      <y>1134</y>
+      <w>161</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>Customer
+
+--
+
+--
++CompareTo(Customer? other)
++CSVify()
++PrintAllInfo()
++ToString()
+_+CustomerMenu(GymDatabaseContext_
+_DB, User user)_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>693</x>
+      <y>917</y>
+      <w>126</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Admin
+
+--
+
+--
++ViewLogg()
++CSVify()
++ToString()
++CompareTo()Admin? other)
+_+AdminMenu()GymDatabaseContext DB,_
+_User user)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1071</x>
+      <y>1134</y>
+      <w>140</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Service
+
+--
+
+--
++CSVify()
++ToString()
++CompareTo(Service? other)
+_+ServiceMenu(GymDatabaseContext DB,_
+_User user)_
++RepairItem()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>994</x>
+      <y>1078</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1113</x>
+      <y>1078</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>917</y>
+      <w>105</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>749</y>
+      <w>112</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IServicable
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>1246</x>
+      <y>749</y>
+      <w>112</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IComparable
+
+--
++CompareTo(T other)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>609</y>
+      <w>266</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>360.0;200.0;360.0;130.0;70.0;130.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1281</x>
+      <y>553</y>
+      <w>35</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+
+</panel_attributes>
+    <additional_attributes>20.0;270.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>336</x>
+      <y>273</y>
+      <w>112</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IComparable
+
+--
++CompareTo(Object obj)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>875</y>
+      <w>434</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>600.0;370.0;600.0;330.0;450.0;330.0;450.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>441</y>
+      <w>203</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>Equipment
+--
+- name: String
+-category: Category
+-calendar: readonly Calender
+-quantity: int
+- largeEquipment: bool
+--
++CompareTo(Equipment? other): int
++ToString(): string
++CSVify(): string
++ViewTimeTable()
++MakeReservation(ReservingEntity owner,Reservation.Category category, TimeSlot timeslot)
++CancelReservation()
+_+BookEquipment(GymdatabaseContext DB, User user)_
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>350</y>
+      <w>224</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>343</x>
+      <y>469</y>
+      <w>70</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Category
+--
+Machines
+Gym
+Bench
+Dumbbells
+Treadmill
+Rackets</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>483</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>553</x>
+      <y>616</y>
+      <w>378</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>520.0;190.0;520.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>616</y>
+      <w>819</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>1150.0;190.0;1150.0;50.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>616</y>
+      <w>686</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>960.0;190.0;960.0;60.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>378</y>
+      <w>182</w>
+      <h>322</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;440.0;10.0;400.0;100.0;400.0;100.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>700</y>
+      <w>70</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Category
+--
+Coach
+PT</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>413</x>
+      <y>714</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>658</x>
+      <y>714</y>
+      <w>329</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>450.0;50.0;450.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>658</x>
+      <y>679</y>
+      <w>777</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>1090.0;100.0;1090.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>658</x>
+      <y>700</y>
+      <w>616</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>860.0;70.0;860.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>861</y>
+      <w>357</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>490.0;70.0;460.0;70.0;460.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1008</x>
+      <y>798</y>
+      <w>434</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;90.0;600.0;90.0;600.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1197</x>
+      <y>798</y>
+      <w>238</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;480.0;10.0;100.0;320.0;100.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>777</x>
+      <y>798</y>
+      <w>651</w>
+      <h>504</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;640.0;10.0;700.0;640.0;700.0;640.0;80.0;910.0;80.0;910.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1057</x>
+      <y>798</y>
+      <w>364</w>
+      <h>483</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;670.0;230.0;670.0;230.0;70.0;500.0;70.0;500.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>742</x>
+      <y>798</y>
+      <w>672</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;60.0;940.0;60.0;940.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>112</x>
+      <y>266</y>
+      <w>147</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>TimeSlot
+
+--
+-start:DateTime
+-end:DateTime
++Start:DateTime
++End:DateTime
+--
++TimeSlot()
++TimeSlot()
++ToString()
++CompareTo()TimeSlot? other)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>980</x>
+      <y>147</y>
+      <w>91</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Category
+--
+Large_Equipment
+Sport_Equipment
+Space
+Coach</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>931</x>
+      <y>196</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>133</y>
+      <w>630</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=*
+m2=*</panel_attributes>
+    <additional_attributes>880.0;10.0;10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>385</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=*
+m2=*</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>448</y>
+      <w>175</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>630</y>
+      <w>203</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;270.0;10.0;270.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>266</x>
+      <y>413</y>
+      <w>602</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0;840.0;10.0;840.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>154</y>
+      <w>252</w>
+      <h>735</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>340.0;10.0;230.0;10.0;230.0;1030.0;10.0;1030.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>63</x>
+      <y>273</y>
+      <w>1225</w>
+      <h>1162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>1730.0;770.0;1730.0;1640.0;20.0;1630.0;10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>707</x>
+      <y>805</y>
+      <w>609</w>
+      <h>539</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>850.0;10.0;850.0;750.0;10.0;740.0;10.0;630.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>805</y>
+      <w>511</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>710.0;10.0;710.0;40.0;10.0;40.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1204</x>
+      <y>805</y>
+      <w>77</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>90.0;10.0;90.0;480.0;10.0;480.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1015</x>
+      <y>805</y>
+      <w>322</w>
+      <h>343</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>440.0;10.0;440.0;430.0;10.0;430.0;10.0;470.0</additional_attributes>
+  </element>
+</diagram>
